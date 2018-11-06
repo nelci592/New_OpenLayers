@@ -4,3 +4,4 @@ $conn = mysqli_connect("studmysql01.fhict.local","dbi349735","neli123","dbi34973
 if (!$conn) {
   die("Connection failed: ".mysqli_connect_error());
 }
+//https://phpmyadmin.hera.fhict.nl
