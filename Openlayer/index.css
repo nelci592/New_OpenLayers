@@ -1,0 +1,73 @@
+/* Menubar */
+.hide {
+	display:none !important;
+}
+/* ----------------------------- */
+
+html, body {
+    font-family: 'Raleway',sans-serif;
+    font-weight: 500; margin: 0 0 24px; 
+    background-color: #E6E6FA;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+	-webkit-padding-start: 0px;
+}
+
+.submenu {
+	display: none;
+}
+
+ul#menu {
+    position: relative;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+li {
+	list-style-type: none;
+	width: 100%;
+	box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
+	border-radius:4px;
+}
+
+li a {
+	display: block;
+  	text-decoration: none;
+  	padding: 10px;
+  	margin: 0 0 10px 0;
+  	transition: all, 0.2s;
+}
+
+/* header */
+.header {
+    height: 50px;  
+    background-color:white;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+#header {
+    position:fixed;
+    background:#fff;
+    width:100%;
+}
+
+/* menu */
+.menu {
+	left: 5%;
+	right: 5%;
+	position: absolute;
+	top: 20%;
+	background:#fff;
+	box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
+}	
+
+
+

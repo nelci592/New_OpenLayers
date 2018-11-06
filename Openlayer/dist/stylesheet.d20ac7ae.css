@@ -1,0 +1,165 @@
+body,html{
+    height: 100%;
+    padding: 0;
+    margin: 0px;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.draw-button{
+    top: 30px;
+    left: .5em;
+
+}
+.save-button{
+    top:100px;
+    left: .5em;
+}
+
+.ol-touch .draw-button {
+        top: 80px;
+}
+.ol-touch .save-button {
+        top: 140px;
+}
+
+body
+{
+background: #e8e8e8;
+height: 100%;
+}
+
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+}/*
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+   background-color: #fff;
+}
+table#t01 th {
+    background-color: black;
+    color: white;
+}*/
+
+.container { margin: 0 auto; }
+
+/* Example wrapper */
+.wrap {
+	position: relative;
+	margin: 3em 0;
+}
+
+#titel{
+  z-index:100001;
+  background-color: #FFFFFF;
+  height:20px;
+  width:100%;
+  color:#000000;
+  font-style: italic;
+   text-align: center;
+
+
+}
+/* Frame */
+.frame {
+	/*height: 60px;*/
+	/*line-height: 60px;*/
+	overflow: hidden;
+
+}
+.frame ul {
+
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-size: 40px;
+}
+.frame ul li {
+	float: left;
+	width: 60px;
+	height: 100%;
+	margin: 0 /*1px*/ 0 0 0;
+	padding: 0;
+	text-align: center;
+	cursor: pointer;
+}
+
+/* Scrollbar */
+.scrollbar {
+
+         position:absolute;
+	  top:0px;
+	  z-index:1000;
+
+	touch-action: pan-x;
+	margin: 2px 0 5px 0;
+	height: 2px;
+	background: #ccc;
+	line-height: 0;
+}
+.scrollbar .handle {
+	width: 50px;
+	height: 100%;
+	background: #292a33;
+	cursor: pointer;
+}
+.scrollbar .handle .mousearea {
+	position: absolute;
+	top: -9px;
+	left: 0;
+	width: 100%;
+	height: 5px;
+}
+
+/* Pages */
+.pages {
+	list-style: none;
+	margin: 20px 0;
+	padding: 0;
+	text-align: center;
+}
+.pages li {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	margin: 0 4px;
+	text-indent: -999px;
+	border-radius: 10px;
+	cursor: pointer;
+	overflow: hidden;
+	background: #fff;
+	box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
+}
+.pages li:hover {
+	background: #aaa;
+}
+.pages li.active {
+	background: #666;
+}
+
+/* Controls */
+.controls { margin: 25px 0; text-align: center; }
+
+/* One Item Per Frame example*/
+.oneperframe { height: 300px; line-height: 300px; }
+.oneperframe ul li { width: 1140px; }
+.oneperframe ul li.active { background: #333; }
+
+/* Crazy example */
+.crazy ul li:nth-child(2n) { width: 100px; margin: 0 4px 0 20px; }
+.crazy ul li:nth-child(3n) { width: 300px; margin: 0 10px 0 5px; }
+.crazy ul li:nth-child(4n) { width: 400px; margin: 0 30px 0 2px; }

@@ -1,0 +1,59 @@
+.sidenav {
+    height: 80%;
+    width: 40px;
+    position: fixed;
+    z-index: 2;
+    top: 10%;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    opacity: 0.9;
+}
+.sidenav:hover {
+    width: 150px;
+}
+
+.sidenav a, .sidetab a {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .sidetab a:hover{
+    color: #f1f1f1;
+}
+
+.sidetab .closebtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 36px;
+    margin: 20px;
+}
+
+.sidetab {
+    height: 80%;
+    width: 0px;;
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 60px;
+    opacity: 0.9;
+    max-width: 450px;
+    
+}
+.sidetab .sidetabContent{
+    margin: 30px;
+    margin-right: 60px;
+    font-size: 14px;
+    color: #818181;
+}

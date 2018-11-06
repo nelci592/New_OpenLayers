@@ -1,0 +1,28 @@
+body,html{
+    height: 100%;
+    padding: 0;
+    margin: 0px;
+}
+        
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.draw-button{
+    top: 30px;
+    left: .5em;
+    
+}
+.save-button{
+    top:100px;
+    left: .5em;
+}
+
+.ol-touch .draw-button {
+        top: 80px;
+}
+.ol-touch .save-button {
+        top: 140px;
+}
+

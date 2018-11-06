@@ -1,0 +1,87 @@
+
+
+#basic {
+    position: absolute;
+    top: 0px;
+    z-index: 1000;
+    overflow: hidden;
+    box-shadow: 0px 0px 3px 2px;
+    width: 100%;
+}
+
+
+
+.clearfix li {
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+#infobox {
+    display: none;
+    /*box-shadow: 0px 0px 3px 2px;*/
+    position: fixed;
+    z-index: 1002;
+    height: 100%;
+    /*max-height:250px;*/
+    top: 5%;
+    right: 0;
+    bottom: 0px;
+    width: 25%;
+    background-color: rgba(200, 200, 200, 1);
+
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+}
+
+#venster {
+    display: none;
+    /*box-shadow: 0px 0px 3px 2px;*/
+    
+}
+
+.btn-group .button {
+    background-color: #4CAF50; /* Green */
+    border: 1px solid green;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 150px;
+    display: block;
+}
+
+.btn-group .button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+.btn-group .button:hover {
+    background-color: #3e8e41;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 1px;
+}
+
+/* tr:nth-child(even){background-color: #f2f2f2} */
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+.groen
+{
+  background-color: #33CC33; 
+}
+.oranje
+{
+  background-color: #FDB534; 
+}

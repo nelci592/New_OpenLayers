@@ -1,0 +1,155 @@
+.sidenav {
+    height: 80%;
+    width: 40px;
+    position: fixed;
+    z-index: 2;
+    top: 10%;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    opacity: 0.9;
+
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+.sidenav:hover {
+    width: 150px;
+
+}
+
+.sidenav a, .sidetab a {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+.sidenav a:hover, .sidetab a:hover{
+    color: #f1f1f1;
+}
+
+.sidetab .closebtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 36px;
+    margin: 20px;
+}
+
+.sidetab {
+    height: 80%;
+    width: 0px;;
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 60px;
+    opacity: 0.7;
+    max-width: 450px;
+
+}
+.sidetab .sidetabContent{
+    margin: 30px;
+    margin-right: 60px;
+    font-size: 14px;
+    color: #818181;
+}
+
+.btn.active {
+	display: none;
+}
+
+.btn span:nth-of-type(1)  {
+	display: none;
+}
+
+.buttonHolder{ text-align: center; }
+
+.confirm{
+  float: center;
+  margin-top: 10%;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 2%;
+  background: #2ecc71;
+  color: #fff;
+  font-weight: 600;
+  width: 50%;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.5s;
+}
+.confirm span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.confirm span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.confirm:hover span {
+  padding-right: 25px;
+}
+
+.confirm:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+.button {
+  float: center;
+  margin-top: 10%;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 2%;
+  background: #2ecc71;
+  color: #fff;
+  font-weight: 600;
+  width: 50%;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
