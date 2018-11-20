@@ -67971,165 +67971,7 @@ var _WebGLMap = _interopRequireDefault(require("./WebGLMap.js"));
 var _util = require("./util.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./AssertionError.js":"../node_modules/ol/AssertionError.js","./Collection.js":"../node_modules/ol/Collection.js","./Disposable.js":"../node_modules/ol/Disposable.js","./Feature.js":"../node_modules/ol/Feature.js","./Geolocation.js":"../node_modules/ol/Geolocation.js","./Graticule.js":"../node_modules/ol/Graticule.js","./Image.js":"../node_modules/ol/Image.js","./ImageBase.js":"../node_modules/ol/ImageBase.js","./ImageCanvas.js":"../node_modules/ol/ImageCanvas.js","./ImageTile.js":"../node_modules/ol/ImageTile.js","./Kinetic.js":"../node_modules/ol/Kinetic.js","./Map.js":"../node_modules/ol/Map.js","./MapBrowserEvent.js":"../node_modules/ol/MapBrowserEvent.js","./MapBrowserEventHandler.js":"../node_modules/ol/MapBrowserEventHandler.js","./MapBrowserPointerEvent.js":"../node_modules/ol/MapBrowserPointerEvent.js","./MapEvent.js":"../node_modules/ol/MapEvent.js","./Object.js":"../node_modules/ol/Object.js","./Observable.js":"../node_modules/ol/Observable.js","./Overlay.js":"../node_modules/ol/Overlay.js","./PluggableMap.js":"../node_modules/ol/PluggableMap.js","./Tile.js":"../node_modules/ol/Tile.js","./TileCache.js":"../node_modules/ol/TileCache.js","./TileQueue.js":"../node_modules/ol/TileQueue.js","./TileRange.js":"../node_modules/ol/TileRange.js","./VectorImageTile.js":"../node_modules/ol/VectorImageTile.js","./VectorTile.js":"../node_modules/ol/VectorTile.js","./View.js":"../node_modules/ol/View.js","./WebGLMap.js":"../node_modules/ol/WebGLMap.js","./util.js":"../node_modules/ol/util.js"}],"../node_modules/ol/layer/TileProperty.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-/**
- * @module ol/layer/TileProperty
- */
-
-/**
- * @enum {string}
- */
-var _default = {
-  PRELOAD: 'preload',
-  USE_INTERIM_TILES_ON_ERROR: 'useInterimTilesOnError'
-};
-exports.default = _default;
-},{}],"../node_modules/ol/layer/Tile.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _LayerType = _interopRequireDefault(require("../LayerType.js"));
-
-var _Layer = _interopRequireDefault(require("../layer/Layer.js"));
-
-var _TileProperty = _interopRequireDefault(require("../layer/TileProperty.js"));
-
-var _obj = require("../obj.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * @module ol/layer/Tile
- */
-
-/**
- * @typedef {Object} Options
- * @property {number} [opacity=1] Opacity (0, 1).
- * @property {boolean} [visible=true] Visibility.
- * @property {module:ol/extent~Extent} [extent] The bounding extent for layer rendering.  The layer will not be
- * rendered outside of this extent.
- * @property {number} [zIndex=0] The z-index for layer rendering.  At rendering time, the layers
- * will be ordered, first by Z-index and then by position.
- * @property {number} [minResolution] The minimum resolution (inclusive) at which this layer will be
- * visible.
- * @property {number} [maxResolution] The maximum resolution (exclusive) below which this layer will
- * be visible.
- * @property {number} [preload=0] Preload. Load low-resolution tiles up to `preload` levels. `0`
- * means no preloading.
- * @property {module:ol/source/Tile} [source] Source for this layer.
- * @property {module:ol/PluggableMap} [map] Sets the layer as overlay on a map. The map will not manage
- * this layer in its layers collection, and the layer will be rendered on top. This is useful for
- * temporary layers. The standard way to add a layer to a map and have it managed by the map is to
- * use {@link module:ol/Map#addLayer}.
- * @property {boolean} [useInterimTilesOnError=true] Use interim tiles on error.
- */
-
-/**
- * @classdesc
- * For layer sources that provide pre-rendered, tiled images in grids that are
- * organized by zoom levels for specific resolutions.
- * Note that any property set in the options is set as a {@link module:ol/Object~BaseObject}
- * property on the layer object; for example, setting `title: 'My Title'` in the
- * options means that `title` is observable, and has get/set accessors.
- *
- * @api
- */
-var TileLayer = function (Layer) {
-  function TileLayer(opt_options) {
-    var options = opt_options ? opt_options : {};
-    var baseOptions = (0, _obj.assign)({}, options);
-    delete baseOptions.preload;
-    delete baseOptions.useInterimTilesOnError;
-    Layer.call(this, baseOptions);
-    this.setPreload(options.preload !== undefined ? options.preload : 0);
-    this.setUseInterimTilesOnError(options.useInterimTilesOnError !== undefined ? options.useInterimTilesOnError : true);
-    /**
-    * The layer type.
-    * @protected
-    * @type {module:ol/LayerType}
-    */
-
-    this.type = _LayerType.default.TILE;
-  }
-
-  if (Layer) TileLayer.__proto__ = Layer;
-  TileLayer.prototype = Object.create(Layer && Layer.prototype);
-  TileLayer.prototype.constructor = TileLayer;
-  /**
-  * Return the level as number to which we will preload tiles up to.
-  * @return {number} The level to preload tiles up to.
-  * @observable
-  * @api
-  */
-
-  TileLayer.prototype.getPreload = function getPreload() {
-    return (
-      /** @type {number} */
-      this.get(_TileProperty.default.PRELOAD)
-    );
-  };
-  /**
-  * Set the level as number to which we will preload tiles up to.
-  * @param {number} preload The level to preload tiles up to.
-  * @observable
-  * @api
-  */
-
-
-  TileLayer.prototype.setPreload = function setPreload(preload) {
-    this.set(_TileProperty.default.PRELOAD, preload);
-  };
-  /**
-  * Whether we use interim tiles on error.
-  * @return {boolean} Use interim tiles on error.
-  * @observable
-  * @api
-  */
-
-
-  TileLayer.prototype.getUseInterimTilesOnError = function getUseInterimTilesOnError() {
-    return (
-      /** @type {boolean} */
-      this.get(_TileProperty.default.USE_INTERIM_TILES_ON_ERROR)
-    );
-  };
-  /**
-  * Set whether we use interim tiles on error.
-  * @param {boolean} useInterimTilesOnError Use interim tiles on error.
-  * @observable
-  * @api
-  */
-
-
-  TileLayer.prototype.setUseInterimTilesOnError = function setUseInterimTilesOnError(useInterimTilesOnError) {
-    this.set(_TileProperty.default.USE_INTERIM_TILES_ON_ERROR, useInterimTilesOnError);
-  };
-
-  return TileLayer;
-}(_Layer.default);
-/**
- * Return the associated {@link module:ol/source/Tile tilesource} of the layer.
- * @function
- * @return {module:ol/source/Tile} Source.
- * @api
- */
-
-
-TileLayer.prototype.getSource;
-var _default = TileLayer;
-exports.default = _default;
-},{"../LayerType.js":"../node_modules/ol/LayerType.js","../layer/Layer.js":"../node_modules/ol/layer/Layer.js","../layer/TileProperty.js":"../node_modules/ol/layer/TileProperty.js","../obj.js":"../node_modules/ol/obj.js"}],"../node_modules/ol/reproj.js":[function(require,module,exports) {
+},{"./AssertionError.js":"../node_modules/ol/AssertionError.js","./Collection.js":"../node_modules/ol/Collection.js","./Disposable.js":"../node_modules/ol/Disposable.js","./Feature.js":"../node_modules/ol/Feature.js","./Geolocation.js":"../node_modules/ol/Geolocation.js","./Graticule.js":"../node_modules/ol/Graticule.js","./Image.js":"../node_modules/ol/Image.js","./ImageBase.js":"../node_modules/ol/ImageBase.js","./ImageCanvas.js":"../node_modules/ol/ImageCanvas.js","./ImageTile.js":"../node_modules/ol/ImageTile.js","./Kinetic.js":"../node_modules/ol/Kinetic.js","./Map.js":"../node_modules/ol/Map.js","./MapBrowserEvent.js":"../node_modules/ol/MapBrowserEvent.js","./MapBrowserEventHandler.js":"../node_modules/ol/MapBrowserEventHandler.js","./MapBrowserPointerEvent.js":"../node_modules/ol/MapBrowserPointerEvent.js","./MapEvent.js":"../node_modules/ol/MapEvent.js","./Object.js":"../node_modules/ol/Object.js","./Observable.js":"../node_modules/ol/Observable.js","./Overlay.js":"../node_modules/ol/Overlay.js","./PluggableMap.js":"../node_modules/ol/PluggableMap.js","./Tile.js":"../node_modules/ol/Tile.js","./TileCache.js":"../node_modules/ol/TileCache.js","./TileQueue.js":"../node_modules/ol/TileQueue.js","./TileRange.js":"../node_modules/ol/TileRange.js","./VectorImageTile.js":"../node_modules/ol/VectorImageTile.js","./VectorTile.js":"../node_modules/ol/VectorTile.js","./View.js":"../node_modules/ol/View.js","./WebGLMap.js":"../node_modules/ol/WebGLMap.js","./util.js":"../node_modules/ol/util.js"}],"../node_modules/ol/reproj.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -73501,7 +73343,1099 @@ var _Style = _interopRequireDefault(require("./style/Style.js"));
 var _Text = _interopRequireDefault(require("./style/Text.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./style/Atlas.js":"../node_modules/ol/style/Atlas.js","./style/AtlasManager.js":"../node_modules/ol/style/AtlasManager.js","./style/Circle.js":"../node_modules/ol/style/Circle.js","./style/Fill.js":"../node_modules/ol/style/Fill.js","./style/Icon.js":"../node_modules/ol/style/Icon.js","./style/IconImage.js":"../node_modules/ol/style/IconImage.js","./style/Image.js":"../node_modules/ol/style/Image.js","./style/RegularShape.js":"../node_modules/ol/style/RegularShape.js","./style/Stroke.js":"../node_modules/ol/style/Stroke.js","./style/Style.js":"../node_modules/ol/style/Style.js","./style/Text.js":"../node_modules/ol/style/Text.js"}],"script/index.js":[function(require,module,exports) {
+},{"./style/Atlas.js":"../node_modules/ol/style/Atlas.js","./style/AtlasManager.js":"../node_modules/ol/style/AtlasManager.js","./style/Circle.js":"../node_modules/ol/style/Circle.js","./style/Fill.js":"../node_modules/ol/style/Fill.js","./style/Icon.js":"../node_modules/ol/style/Icon.js","./style/IconImage.js":"../node_modules/ol/style/IconImage.js","./style/Image.js":"../node_modules/ol/style/Image.js","./style/RegularShape.js":"../node_modules/ol/style/RegularShape.js","./style/Stroke.js":"../node_modules/ol/style/Stroke.js","./style/Style.js":"../node_modules/ol/style/Style.js","./style/Text.js":"../node_modules/ol/style/Text.js"}],"../node_modules/ol/layer/Heatmap.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _events = require("../events.js");
+
+var _Object = require("../Object.js");
+
+var _dom = require("../dom.js");
+
+var _Vector = _interopRequireDefault(require("../layer/Vector.js"));
+
+var _math = require("../math.js");
+
+var _obj = require("../obj.js");
+
+var _EventType = _interopRequireDefault(require("../render/EventType.js"));
+
+var _Icon = _interopRequireDefault(require("../style/Icon.js"));
+
+var _Style = _interopRequireDefault(require("../style/Style.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @module ol/layer/Heatmap
+ */
+
+/**
+ * @typedef {Object} Options
+ * @property {number} [opacity=1] Opacity (0, 1).
+ * @property {boolean} [visible=true] Visibility.
+ * @property {module:ol/extent~Extent} [extent] The bounding extent for layer rendering.  The layer will not be
+ * rendered outside of this extent.
+ * @property {number} [zIndex=0] The z-index for layer rendering.  At rendering time, the layers
+ * will be ordered, first by Z-index and then by position.
+ * @property {number} [minResolution] The minimum resolution (inclusive) at which this layer will be
+ * visible.
+ * @property {number} [maxResolution] The maximum resolution (exclusive) below which this layer will
+ * be visible.
+ * @property {Array<string>} [gradient=['#00f', '#0ff', '#0f0', '#ff0', '#f00']] The color gradient
+ * of the heatmap, specified as an array of CSS color strings.
+ * @property {number} [radius=8] Radius size in pixels.
+ * @property {number} [blur=15] Blur size in pixels.
+ * @property {number} [shadow=250] Shadow size in pixels.
+ * @property {string|function(module:ol/Feature):number} [weight='weight'] The feature
+ * attribute to use for the weight or a function that returns a weight from a feature. Weight values
+ * should range from 0 to 1 (and values outside will be clamped to that range).
+ * @property {module:ol/layer/VectorRenderType|string} [renderMode='vector'] Render mode for vector layers:
+ *  * `'image'`: Vector layers are rendered as images. Great performance, but point symbols and
+ *    texts are always rotated with the view and pixels are scaled during zoom animations.
+ *  * `'vector'`: Vector layers are rendered as vectors. Most accurate rendering even during
+ *    animations, but slower performance.
+ * @property {module:ol/source/Vector} [source] Source.
+ */
+
+/**
+ * @enum {string}
+ * @private
+ */
+var Property = {
+  BLUR: 'blur',
+  GRADIENT: 'gradient',
+  RADIUS: 'radius'
+};
+/**
+ * @const
+ * @type {Array<string>}
+ */
+
+var DEFAULT_GRADIENT = ['#00f', '#0ff', '#0f0', '#ff0', '#f00'];
+/**
+ * @classdesc
+ * Layer for rendering vector data as a heatmap.
+ * Note that any property set in the options is set as a {@link module:ol/Object~BaseObject}
+ * property on the layer object; for example, setting `title: 'My Title'` in the
+ * options means that `title` is observable, and has get/set accessors.
+ *
+ * @fires module:ol/render/Event~RenderEvent
+ * @api
+ */
+
+var Heatmap = function (VectorLayer) {
+  function Heatmap(opt_options) {
+    var options = opt_options ? opt_options : {};
+    var baseOptions = (0, _obj.assign)({}, options);
+    delete baseOptions.gradient;
+    delete baseOptions.radius;
+    delete baseOptions.blur;
+    delete baseOptions.shadow;
+    delete baseOptions.weight;
+    VectorLayer.call(this, baseOptions);
+    /**
+     * @private
+     * @type {Uint8ClampedArray}
+     */
+
+    this.gradient_ = null;
+    /**
+     * @private
+     * @type {number}
+     */
+
+    this.shadow_ = options.shadow !== undefined ? options.shadow : 250;
+    /**
+     * @private
+     * @type {string|undefined}
+     */
+
+    this.circleImage_ = undefined;
+    /**
+     * @private
+     * @type {Array<Array<module:ol/style/Style>>}
+     */
+
+    this.styleCache_ = null;
+    (0, _events.listen)(this, (0, _Object.getChangeEventType)(Property.GRADIENT), this.handleGradientChanged_, this);
+    this.setGradient(options.gradient ? options.gradient : DEFAULT_GRADIENT);
+    this.setBlur(options.blur !== undefined ? options.blur : 15);
+    this.setRadius(options.radius !== undefined ? options.radius : 8);
+    (0, _events.listen)(this, (0, _Object.getChangeEventType)(Property.BLUR), this.handleStyleChanged_, this);
+    (0, _events.listen)(this, (0, _Object.getChangeEventType)(Property.RADIUS), this.handleStyleChanged_, this);
+    this.handleStyleChanged_();
+    var weight = options.weight ? options.weight : 'weight';
+    var weightFunction;
+
+    if (typeof weight === 'string') {
+      weightFunction = function (feature) {
+        return feature.get(weight);
+      };
+    } else {
+      weightFunction = weight;
+    }
+
+    this.setStyle(function (feature, resolution) {
+      var weight = weightFunction(feature);
+      var opacity = weight !== undefined ? (0, _math.clamp)(weight, 0, 1) : 1; // cast to 8 bits
+
+      var index = 255 * opacity | 0;
+      var style = this.styleCache_[index];
+
+      if (!style) {
+        style = [new _Style.default({
+          image: new _Icon.default({
+            opacity: opacity,
+            src: this.circleImage_
+          })
+        })];
+        this.styleCache_[index] = style;
+      }
+
+      return style;
+    }.bind(this)); // For performance reasons, don't sort the features before rendering.
+    // The render order is not relevant for a heatmap representation.
+
+    this.setRenderOrder(null);
+    (0, _events.listen)(this, _EventType.default.RENDER, this.handleRender_, this);
+  }
+
+  if (VectorLayer) Heatmap.__proto__ = VectorLayer;
+  Heatmap.prototype = Object.create(VectorLayer && VectorLayer.prototype);
+  Heatmap.prototype.constructor = Heatmap;
+  /**
+   * @return {string} Data URL for a circle.
+   * @private
+   */
+
+  Heatmap.prototype.createCircle_ = function createCircle_() {
+    var radius = this.getRadius();
+    var blur = this.getBlur();
+    var halfSize = radius + blur + 1;
+    var size = 2 * halfSize;
+    var context = (0, _dom.createCanvasContext2D)(size, size);
+    context.shadowOffsetX = context.shadowOffsetY = this.shadow_;
+    context.shadowBlur = blur;
+    context.shadowColor = '#000';
+    context.beginPath();
+    var center = halfSize - this.shadow_;
+    context.arc(center, center, radius, 0, Math.PI * 2, true);
+    context.fill();
+    return context.canvas.toDataURL();
+  };
+  /**
+   * Return the blur size in pixels.
+   * @return {number} Blur size in pixels.
+   * @api
+   * @observable
+   */
+
+
+  Heatmap.prototype.getBlur = function getBlur() {
+    return (
+      /** @type {number} */
+      this.get(Property.BLUR)
+    );
+  };
+  /**
+   * Return the gradient colors as array of strings.
+   * @return {Array<string>} Colors.
+   * @api
+   * @observable
+   */
+
+
+  Heatmap.prototype.getGradient = function getGradient() {
+    return (
+      /** @type {Array<string>} */
+      this.get(Property.GRADIENT)
+    );
+  };
+  /**
+   * Return the size of the radius in pixels.
+   * @return {number} Radius size in pixel.
+   * @api
+   * @observable
+   */
+
+
+  Heatmap.prototype.getRadius = function getRadius() {
+    return (
+      /** @type {number} */
+      this.get(Property.RADIUS)
+    );
+  };
+  /**
+   * @private
+   */
+
+
+  Heatmap.prototype.handleGradientChanged_ = function handleGradientChanged_() {
+    this.gradient_ = createGradient(this.getGradient());
+  };
+  /**
+   * @private
+   */
+
+
+  Heatmap.prototype.handleStyleChanged_ = function handleStyleChanged_() {
+    this.circleImage_ = this.createCircle_();
+    this.styleCache_ = new Array(256);
+    this.changed();
+  };
+  /**
+   * @param {module:ol/render/Event} event Post compose event
+   * @private
+   */
+
+
+  Heatmap.prototype.handleRender_ = function handleRender_(event) {
+    var this$1 = this;
+    var context = event.context;
+    var canvas = context.canvas;
+    var image = context.getImageData(0, 0, canvas.width, canvas.height);
+    var view8 = image.data;
+
+    for (var i = 0, ii = view8.length; i < ii; i += 4) {
+      var alpha = view8[i + 3] * 4;
+
+      if (alpha) {
+        view8[i] = this$1.gradient_[alpha];
+        view8[i + 1] = this$1.gradient_[alpha + 1];
+        view8[i + 2] = this$1.gradient_[alpha + 2];
+      }
+    }
+
+    context.putImageData(image, 0, 0);
+  };
+  /**
+   * Set the blur size in pixels.
+   * @param {number} blur Blur size in pixels.
+   * @api
+   * @observable
+   */
+
+
+  Heatmap.prototype.setBlur = function setBlur(blur) {
+    this.set(Property.BLUR, blur);
+  };
+  /**
+   * Set the gradient colors as array of strings.
+   * @param {Array<string>} colors Gradient.
+   * @api
+   * @observable
+   */
+
+
+  Heatmap.prototype.setGradient = function setGradient(colors) {
+    this.set(Property.GRADIENT, colors);
+  };
+  /**
+   * Set the size of the radius in pixels.
+   * @param {number} radius Radius size in pixel.
+   * @api
+   * @observable
+   */
+
+
+  Heatmap.prototype.setRadius = function setRadius(radius) {
+    this.set(Property.RADIUS, radius);
+  };
+
+  return Heatmap;
+}(_Vector.default);
+/**
+ * @param {Array<string>} colors A list of colored.
+ * @return {Uint8ClampedArray} An array.
+ */
+
+
+function createGradient(colors) {
+  var width = 1;
+  var height = 256;
+  var context = (0, _dom.createCanvasContext2D)(width, height);
+  var gradient = context.createLinearGradient(0, 0, width, height);
+  var step = 1 / (colors.length - 1);
+
+  for (var i = 0, ii = colors.length; i < ii; ++i) {
+    gradient.addColorStop(i * step, colors[i]);
+  }
+
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, width, height);
+  return context.getImageData(0, 0, width, height).data;
+}
+
+var _default = Heatmap;
+exports.default = _default;
+},{"../events.js":"../node_modules/ol/events.js","../Object.js":"../node_modules/ol/Object.js","../dom.js":"../node_modules/ol/dom.js","../layer/Vector.js":"../node_modules/ol/layer/Vector.js","../math.js":"../node_modules/ol/math.js","../obj.js":"../node_modules/ol/obj.js","../render/EventType.js":"../node_modules/ol/render/EventType.js","../style/Icon.js":"../node_modules/ol/style/Icon.js","../style/Style.js":"../node_modules/ol/style/Style.js"}],"../node_modules/ol/layer/Image.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _LayerType = _interopRequireDefault(require("../LayerType.js"));
+
+var _Layer = _interopRequireDefault(require("../layer/Layer.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @module ol/layer/Image
+ */
+
+/**
+ * @typedef {Object} Options
+ * @property {number} [opacity=1] Opacity (0, 1).
+ * @property {boolean} [visible=true] Visibility.
+ * @property {module:ol/extent~Extent} [extent] The bounding extent for layer rendering.  The layer will not be
+ * rendered outside of this extent.
+ * @property {number} [zIndex=0] The z-index for layer rendering.  At rendering time, the layers
+ * will be ordered, first by Z-index and then by position.
+ * @property {number} [minResolution] The minimum resolution (inclusive) at which this layer will be
+ * visible.
+ * @property {number} [maxResolution] The maximum resolution (exclusive) below which this layer will
+ * be visible.
+ * @property {module:ol/PluggableMap} [map] Sets the layer as overlay on a map. The map will not manage
+ * this layer in its layers collection, and the layer will be rendered on top. This is useful for
+ * temporary layers. The standard way to add a layer to a map and have it managed by the map is to
+ * use {@link module:ol/Map#addLayer}.
+ * @property {module:ol/source/Image} [source] Source for this layer.
+ */
+
+/**
+ * @classdesc
+ * Server-rendered images that are available for arbitrary extents and
+ * resolutions.
+ * Note that any property set in the options is set as a {@link module:ol/Object~BaseObject}
+ * property on the layer object; for example, setting `title: 'My Title'` in the
+ * options means that `title` is observable, and has get/set accessors.
+ *
+ * @fires module:ol/render/Event~RenderEvent
+ * @api
+ */
+var ImageLayer = function (Layer) {
+  function ImageLayer(opt_options) {
+    var options = opt_options ? opt_options : {};
+    Layer.call(this, options);
+    /**
+     * The layer type.
+     * @protected
+     * @type {module:ol/LayerType}
+     */
+
+    this.type = _LayerType.default.IMAGE;
+  }
+
+  if (Layer) ImageLayer.__proto__ = Layer;
+  ImageLayer.prototype = Object.create(Layer && Layer.prototype);
+  ImageLayer.prototype.constructor = ImageLayer;
+  return ImageLayer;
+}(_Layer.default);
+/**
+ * Return the associated {@link module:ol/source/Image source} of the image layer.
+ * @function
+ * @return {module:ol/source/Image} Source.
+ * @api
+ */
+
+
+ImageLayer.prototype.getSource;
+var _default = ImageLayer;
+exports.default = _default;
+},{"../LayerType.js":"../node_modules/ol/LayerType.js","../layer/Layer.js":"../node_modules/ol/layer/Layer.js"}],"../node_modules/ol/layer/TileProperty.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+/**
+ * @module ol/layer/TileProperty
+ */
+
+/**
+ * @enum {string}
+ */
+var _default = {
+  PRELOAD: 'preload',
+  USE_INTERIM_TILES_ON_ERROR: 'useInterimTilesOnError'
+};
+exports.default = _default;
+},{}],"../node_modules/ol/layer/Tile.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _LayerType = _interopRequireDefault(require("../LayerType.js"));
+
+var _Layer = _interopRequireDefault(require("../layer/Layer.js"));
+
+var _TileProperty = _interopRequireDefault(require("../layer/TileProperty.js"));
+
+var _obj = require("../obj.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @module ol/layer/Tile
+ */
+
+/**
+ * @typedef {Object} Options
+ * @property {number} [opacity=1] Opacity (0, 1).
+ * @property {boolean} [visible=true] Visibility.
+ * @property {module:ol/extent~Extent} [extent] The bounding extent for layer rendering.  The layer will not be
+ * rendered outside of this extent.
+ * @property {number} [zIndex=0] The z-index for layer rendering.  At rendering time, the layers
+ * will be ordered, first by Z-index and then by position.
+ * @property {number} [minResolution] The minimum resolution (inclusive) at which this layer will be
+ * visible.
+ * @property {number} [maxResolution] The maximum resolution (exclusive) below which this layer will
+ * be visible.
+ * @property {number} [preload=0] Preload. Load low-resolution tiles up to `preload` levels. `0`
+ * means no preloading.
+ * @property {module:ol/source/Tile} [source] Source for this layer.
+ * @property {module:ol/PluggableMap} [map] Sets the layer as overlay on a map. The map will not manage
+ * this layer in its layers collection, and the layer will be rendered on top. This is useful for
+ * temporary layers. The standard way to add a layer to a map and have it managed by the map is to
+ * use {@link module:ol/Map#addLayer}.
+ * @property {boolean} [useInterimTilesOnError=true] Use interim tiles on error.
+ */
+
+/**
+ * @classdesc
+ * For layer sources that provide pre-rendered, tiled images in grids that are
+ * organized by zoom levels for specific resolutions.
+ * Note that any property set in the options is set as a {@link module:ol/Object~BaseObject}
+ * property on the layer object; for example, setting `title: 'My Title'` in the
+ * options means that `title` is observable, and has get/set accessors.
+ *
+ * @api
+ */
+var TileLayer = function (Layer) {
+  function TileLayer(opt_options) {
+    var options = opt_options ? opt_options : {};
+    var baseOptions = (0, _obj.assign)({}, options);
+    delete baseOptions.preload;
+    delete baseOptions.useInterimTilesOnError;
+    Layer.call(this, baseOptions);
+    this.setPreload(options.preload !== undefined ? options.preload : 0);
+    this.setUseInterimTilesOnError(options.useInterimTilesOnError !== undefined ? options.useInterimTilesOnError : true);
+    /**
+    * The layer type.
+    * @protected
+    * @type {module:ol/LayerType}
+    */
+
+    this.type = _LayerType.default.TILE;
+  }
+
+  if (Layer) TileLayer.__proto__ = Layer;
+  TileLayer.prototype = Object.create(Layer && Layer.prototype);
+  TileLayer.prototype.constructor = TileLayer;
+  /**
+  * Return the level as number to which we will preload tiles up to.
+  * @return {number} The level to preload tiles up to.
+  * @observable
+  * @api
+  */
+
+  TileLayer.prototype.getPreload = function getPreload() {
+    return (
+      /** @type {number} */
+      this.get(_TileProperty.default.PRELOAD)
+    );
+  };
+  /**
+  * Set the level as number to which we will preload tiles up to.
+  * @param {number} preload The level to preload tiles up to.
+  * @observable
+  * @api
+  */
+
+
+  TileLayer.prototype.setPreload = function setPreload(preload) {
+    this.set(_TileProperty.default.PRELOAD, preload);
+  };
+  /**
+  * Whether we use interim tiles on error.
+  * @return {boolean} Use interim tiles on error.
+  * @observable
+  * @api
+  */
+
+
+  TileLayer.prototype.getUseInterimTilesOnError = function getUseInterimTilesOnError() {
+    return (
+      /** @type {boolean} */
+      this.get(_TileProperty.default.USE_INTERIM_TILES_ON_ERROR)
+    );
+  };
+  /**
+  * Set whether we use interim tiles on error.
+  * @param {boolean} useInterimTilesOnError Use interim tiles on error.
+  * @observable
+  * @api
+  */
+
+
+  TileLayer.prototype.setUseInterimTilesOnError = function setUseInterimTilesOnError(useInterimTilesOnError) {
+    this.set(_TileProperty.default.USE_INTERIM_TILES_ON_ERROR, useInterimTilesOnError);
+  };
+
+  return TileLayer;
+}(_Layer.default);
+/**
+ * Return the associated {@link module:ol/source/Tile tilesource} of the layer.
+ * @function
+ * @return {module:ol/source/Tile} Source.
+ * @api
+ */
+
+
+TileLayer.prototype.getSource;
+var _default = TileLayer;
+exports.default = _default;
+},{"../LayerType.js":"../node_modules/ol/LayerType.js","../layer/Layer.js":"../node_modules/ol/layer/Layer.js","../layer/TileProperty.js":"../node_modules/ol/layer/TileProperty.js","../obj.js":"../node_modules/ol/obj.js"}],"../node_modules/ol/layer/VectorTile.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.RenderType = void 0;
+
+var _LayerType = _interopRequireDefault(require("../LayerType.js"));
+
+var _asserts = require("../asserts.js");
+
+var _TileProperty = _interopRequireDefault(require("../layer/TileProperty.js"));
+
+var _Vector = _interopRequireDefault(require("../layer/Vector.js"));
+
+var _VectorTileRenderType = _interopRequireDefault(require("../layer/VectorTileRenderType.js"));
+
+var _obj = require("../obj.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @module ol/layer/VectorTile
+ */
+
+/**
+ * @enum {string}
+ * Render mode for vector tiles:
+ *  * `'image'`: Vector tiles are rendered as images. Great performance, but
+ *    point symbols and texts are always rotated with the view and pixels are
+ *    scaled during zoom animations.
+ *  * `'hybrid'`: Polygon and line elements are rendered as images, so pixels
+ *    are scaled during zoom animations. Point symbols and texts are accurately
+ *    rendered as vectors and can stay upright on rotated views.
+ *  * `'vector'`: Vector tiles are rendered as vectors. Most accurate rendering
+ *    even during animations, but slower performance than the other options.
+ * @api
+ */
+var RenderType = {
+  IMAGE: 'image',
+  HYBRID: 'hybrid',
+  VECTOR: 'vector'
+};
+/**
+ * @typedef {Object} Options
+ * @property {number} [opacity=1] Opacity (0, 1).
+ * @property {boolean} [visible=true] Visibility.
+ * @property {module:ol/extent~Extent} [extent] The bounding extent for layer rendering.  The layer will not be
+ * rendered outside of this extent.
+ * @property {number} [zIndex=0] The z-index for layer rendering.  At rendering time, the layers
+ * will be ordered, first by Z-index and then by position.
+ * @property {number} [minResolution] The minimum resolution (inclusive) at which this layer will be
+ * visible.
+ * @property {number} [maxResolution] The maximum resolution (exclusive) below which this layer will
+ * be visible.
+ * @property {module:ol/render~OrderFunction} [renderOrder] Render order. Function to be used when sorting
+ * features before rendering. By default features are drawn in the order that they are created. Use
+ * `null` to avoid the sort, but get an undefined draw order.
+ * @property {number} [renderBuffer=100] The buffer in pixels around the tile extent used by the
+ * renderer when getting features from the vector tile for the rendering or hit-detection.
+ * Recommended value: Vector tiles are usually generated with a buffer, so this value should match
+ * the largest possible buffer of the used tiles. It should be at least the size of the largest
+ * point symbol or line width.
+ * @property {module:ol/layer/VectorTileRenderType|string} [renderMode='hybrid'] Render mode for vector tiles:
+ *  * `'image'`: Vector tiles are rendered as images. Great performance, but point symbols and texts
+ *    are always rotated with the view and pixels are scaled during zoom animations.
+ *  * `'hybrid'`: Polygon and line elements are rendered as images, so pixels are scaled during zoom
+ *    animations. Point symbols and texts are accurately rendered as vectors and can stay upright on
+ *    rotated views.
+ *  * `'vector'`: Vector tiles are rendered as vectors. Most accurate rendering even during
+ *    animations, but slower performance than the other options.
+ *
+ * When `declutter` is set to `true`, `'hybrid'` will be used instead of `'image'`.
+ * @property {module:ol/source/VectorTile} [source] Source.
+ * @property {module:ol/PluggableMap} [map] Sets the layer as overlay on a map. The map will not manage
+ * this layer in its layers collection, and the layer will be rendered on top. This is useful for
+ * temporary layers. The standard way to add a layer to a map and have it managed by the map is to
+ * use {@link module:ol/Map#addLayer}.
+ * @property {boolean} [declutter=false] Declutter images and text. Decluttering is applied to all
+ * image and text styles, and the priority is defined by the z-index of the style. Lower z-index
+ * means higher priority. When set to `true`, a `renderMode` of `'image'` will be overridden with
+ * `'hybrid'`.
+ * @property {module:ol/style/Style|Array<module:ol/style/Style>|module:ol/style/Style~StyleFunction} [style] Layer style. See
+ * {@link module:ol/style} for default style which will be used if this is not defined.
+ * @property {boolean} [updateWhileAnimating=false] When set to `true`, feature batches will be
+ * recreated during animations. This means that no vectors will be shown clipped, but the setting
+ * will have a performance impact for large amounts of vector data. When set to `false`, batches
+ * will be recreated when no animation is active.
+ * @property {boolean} [updateWhileInteracting=false] When set to `true`, feature batches will be
+ * recreated during interactions. See also `updateWhileAnimating`.
+ * @property {number} [preload=0] Preload. Load low-resolution tiles up to `preload` levels. `0`
+ * means no preloading.
+ * @property {module:ol/render~OrderFunction} [renderOrder] Render order. Function to be used when sorting
+ * features before rendering. By default features are drawn in the order that they are created.
+ * @property {module:ol/style/Style|Array<module:ol/style/Style>|module:ol/style/Style~StyleFunction} [style] Layer style. See
+ * {@link module:ol/style} for default style which will be used if this is not defined.
+ * @property {boolean} [useInterimTilesOnError=true] Use interim tiles on error.
+ */
+
+/**
+ * @classdesc
+ * Layer for vector tile data that is rendered client-side.
+ * Note that any property set in the options is set as a {@link module:ol/Object~BaseObject}
+ * property on the layer object; for example, setting `title: 'My Title'` in the
+ * options means that `title` is observable, and has get/set accessors.
+ *
+ * @param {module:ol/layer/VectorTile~Options=} opt_options Options.
+ * @api
+ */
+
+exports.RenderType = RenderType;
+
+var VectorTileLayer = function (VectorLayer) {
+  function VectorTileLayer(opt_options) {
+    var options = opt_options ? opt_options : {};
+    var renderMode = options.renderMode || _VectorTileRenderType.default.HYBRID;
+    (0, _asserts.assert)(renderMode == undefined || renderMode == _VectorTileRenderType.default.IMAGE || renderMode == _VectorTileRenderType.default.HYBRID || renderMode == _VectorTileRenderType.default.VECTOR, 28); // `renderMode` must be `'image'`, `'hybrid'` or `'vector'`
+
+    if (options.declutter && renderMode == _VectorTileRenderType.default.IMAGE) {
+      renderMode = _VectorTileRenderType.default.HYBRID;
+    }
+
+    options.renderMode = renderMode;
+    var baseOptions = (0, _obj.assign)({}, options);
+    delete baseOptions.preload;
+    delete baseOptions.useInterimTilesOnError;
+    VectorLayer.call(this, baseOptions);
+    this.setPreload(options.preload ? options.preload : 0);
+    this.setUseInterimTilesOnError(options.useInterimTilesOnError !== undefined ? options.useInterimTilesOnError : true);
+    /**
+    * The layer type.
+    * @protected
+    * @type {module:ol/LayerType}
+    */
+
+    this.type = _LayerType.default.VECTOR_TILE;
+  }
+
+  if (VectorLayer) VectorTileLayer.__proto__ = VectorLayer;
+  VectorTileLayer.prototype = Object.create(VectorLayer && VectorLayer.prototype);
+  VectorTileLayer.prototype.constructor = VectorTileLayer;
+  /**
+  * Return the level as number to which we will preload tiles up to.
+  * @return {number} The level to preload tiles up to.
+  * @observable
+  * @api
+  */
+
+  VectorTileLayer.prototype.getPreload = function getPreload() {
+    return (
+      /** @type {number} */
+      this.get(_TileProperty.default.PRELOAD)
+    );
+  };
+  /**
+  * Whether we use interim tiles on error.
+  * @return {boolean} Use interim tiles on error.
+  * @observable
+  * @api
+  */
+
+
+  VectorTileLayer.prototype.getUseInterimTilesOnError = function getUseInterimTilesOnError() {
+    return (
+      /** @type {boolean} */
+      this.get(_TileProperty.default.USE_INTERIM_TILES_ON_ERROR)
+    );
+  };
+  /**
+  * Set the level as number to which we will preload tiles up to.
+  * @param {number} preload The level to preload tiles up to.
+  * @observable
+  * @api
+  */
+
+
+  VectorTileLayer.prototype.setPreload = function setPreload(preload) {
+    this.set(_TileProperty.default.PRELOAD, preload);
+  };
+  /**
+  * Set whether we use interim tiles on error.
+  * @param {boolean} useInterimTilesOnError Use interim tiles on error.
+  * @observable
+  * @api
+  */
+
+
+  VectorTileLayer.prototype.setUseInterimTilesOnError = function setUseInterimTilesOnError(useInterimTilesOnError) {
+    this.set(_TileProperty.default.USE_INTERIM_TILES_ON_ERROR, useInterimTilesOnError);
+  };
+
+  return VectorTileLayer;
+}(_Vector.default);
+/**
+ * Return the associated {@link module:ol/source/VectorTile vectortilesource} of the layer.
+ * @function
+ * @return {module:ol/source/VectorTile} Source.
+ * @api
+ */
+
+
+VectorTileLayer.prototype.getSource;
+var _default = VectorTileLayer;
+exports.default = _default;
+},{"../LayerType.js":"../node_modules/ol/LayerType.js","../asserts.js":"../node_modules/ol/asserts.js","../layer/TileProperty.js":"../node_modules/ol/layer/TileProperty.js","../layer/Vector.js":"../node_modules/ol/layer/Vector.js","../layer/VectorTileRenderType.js":"../node_modules/ol/layer/VectorTileRenderType.js","../obj.js":"../node_modules/ol/obj.js"}],"../node_modules/ol/layer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Group", {
+  enumerable: true,
+  get: function () {
+    return _Group.default;
+  }
+});
+Object.defineProperty(exports, "Heatmap", {
+  enumerable: true,
+  get: function () {
+    return _Heatmap.default;
+  }
+});
+Object.defineProperty(exports, "Image", {
+  enumerable: true,
+  get: function () {
+    return _Image.default;
+  }
+});
+Object.defineProperty(exports, "Layer", {
+  enumerable: true,
+  get: function () {
+    return _Layer.default;
+  }
+});
+Object.defineProperty(exports, "Tile", {
+  enumerable: true,
+  get: function () {
+    return _Tile.default;
+  }
+});
+Object.defineProperty(exports, "Vector", {
+  enumerable: true,
+  get: function () {
+    return _Vector.default;
+  }
+});
+Object.defineProperty(exports, "VectorTile", {
+  enumerable: true,
+  get: function () {
+    return _VectorTile.default;
+  }
+});
+
+var _Group = _interopRequireDefault(require("./layer/Group.js"));
+
+var _Heatmap = _interopRequireDefault(require("./layer/Heatmap.js"));
+
+var _Image = _interopRequireDefault(require("./layer/Image.js"));
+
+var _Layer = _interopRequireDefault(require("./layer/Layer.js"));
+
+var _Tile = _interopRequireDefault(require("./layer/Tile.js"));
+
+var _Vector = _interopRequireDefault(require("./layer/Vector.js"));
+
+var _VectorTile = _interopRequireDefault(require("./layer/VectorTile.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./layer/Group.js":"../node_modules/ol/layer/Group.js","./layer/Heatmap.js":"../node_modules/ol/layer/Heatmap.js","./layer/Image.js":"../node_modules/ol/layer/Image.js","./layer/Layer.js":"../node_modules/ol/layer/Layer.js","./layer/Tile.js":"../node_modules/ol/layer/Tile.js","./layer/Vector.js":"../node_modules/ol/layer/Vector.js","./layer/VectorTile.js":"../node_modules/ol/layer/VectorTile.js"}],"../node_modules/ol/net.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.jsonp = jsonp;
+
+var _util = require("./util.js");
+
+/**
+ * @module ol/net
+ */
+
+/**
+ * Simple JSONP helper. Supports error callbacks and a custom callback param.
+ * The error callback will be called when no JSONP is executed after 10 seconds.
+ *
+ * @param {string} url Request url. A 'callback' query parameter will be
+ *     appended.
+ * @param {Function} callback Callback on success.
+ * @param {function()=} opt_errback Callback on error.
+ * @param {string=} opt_callbackParam Custom query parameter for the JSONP
+ *     callback. Default is 'callback'.
+ */
+function jsonp(url, callback, opt_errback, opt_callbackParam) {
+  var script = document.createElement('script');
+  var key = 'olc_' + (0, _util.getUid)(callback);
+
+  function cleanup() {
+    delete window[key];
+    script.parentNode.removeChild(script);
+  }
+
+  script.async = true;
+  script.src = url + (url.indexOf('?') == -1 ? '?' : '&') + (opt_callbackParam || 'callback') + '=' + key;
+  var timer = setTimeout(function () {
+    cleanup();
+
+    if (opt_errback) {
+      opt_errback();
+    }
+  }, 10000);
+
+  window[key] = function (data) {
+    clearTimeout(timer);
+    cleanup();
+    callback(data);
+  };
+
+  document.getElementsByTagName('head')[0].appendChild(script);
+}
+},{"./util.js":"../node_modules/ol/util.js"}],"../node_modules/ol/source/TileJSON.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _tileurlfunction = require("../tileurlfunction.js");
+
+var _asserts = require("../asserts.js");
+
+var _extent = require("../extent.js");
+
+var _net = require("../net.js");
+
+var _proj = require("../proj.js");
+
+var _State = _interopRequireDefault(require("../source/State.js"));
+
+var _TileImage = _interopRequireDefault(require("../source/TileImage.js"));
+
+var _tilegrid = require("../tilegrid.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @module ol/source/TileJSON
+ */
+// FIXME check order of async callbacks
+
+/**
+ * See http://mapbox.com/developers/api/.
+ */
+
+/**
+ * @typedef {Object} Options
+ * @property {module:ol/source/Source~AttributionLike} [attributions] Attributions.
+ * @property {number} [cacheSize=2048] Cache size.
+ * @property {null|string} [crossOrigin] The `crossOrigin` attribute for loaded images.  Note that
+ * you must provide a `crossOrigin` value if you are using the WebGL renderer or if you want to
+ * access pixel data with the Canvas renderer.  See
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image for more detail.
+ * @property {boolean} [jsonp=false] Use JSONP with callback to load the TileJSON.
+ * Useful when the server does not support CORS..
+ * @property {number} [reprojectionErrorThreshold=0.5] Maximum allowed reprojection error (in pixels).
+ * Higher values can increase reprojection performance, but decrease precision.
+ * @property {tileJSON} [tileJSON] TileJSON configuration for this source.
+ * If not provided, `url` must be configured.
+ * @property {module:ol/Tile~LoadFunction} [tileLoadFunction] Optional function to load a tile given a URL. The default is
+ * ```js
+ * function(imageTile, src) {
+ *   imageTile.getImage().src = src;
+ * };
+ * ```
+ * @property {string} [url] URL to the TileJSON file. If not provided, `tileJSON` must be configured.
+ * @property {boolean} [wrapX=true] Whether to wrap the world horizontally.
+ * @property {number} [transition] Duration of the opacity transition for rendering.
+ * To disable the opacity transition, pass `transition: 0`.
+ */
+
+/**
+ * @classdesc
+ * Layer source for tile data in TileJSON format.
+ * @api
+ */
+var TileJSON = function (TileImage) {
+  function TileJSON(options) {
+    TileImage.call(this, {
+      attributions: options.attributions,
+      cacheSize: options.cacheSize,
+      crossOrigin: options.crossOrigin,
+      projection: (0, _proj.get)('EPSG:3857'),
+      reprojectionErrorThreshold: options.reprojectionErrorThreshold,
+      state: _State.default.LOADING,
+      tileLoadFunction: options.tileLoadFunction,
+      wrapX: options.wrapX !== undefined ? options.wrapX : true,
+      transition: options.transition
+    });
+    /**
+     * @type {TileJSON}
+     * @private
+     */
+
+    this.tileJSON_ = null;
+
+    if (options.url) {
+      if (options.jsonp) {
+        (0, _net.jsonp)(options.url, this.handleTileJSONResponse.bind(this), this.handleTileJSONError.bind(this));
+      } else {
+        var client = new XMLHttpRequest();
+        client.addEventListener('load', this.onXHRLoad_.bind(this));
+        client.addEventListener('error', this.onXHRError_.bind(this));
+        client.open('GET', options.url);
+        client.send();
+      }
+    } else if (options.tileJSON) {
+      this.handleTileJSONResponse(options.tileJSON);
+    } else {
+      (0, _asserts.assert)(false, 51); // Either `url` or `tileJSON` options must be provided
+    }
+  }
+
+  if (TileImage) TileJSON.__proto__ = TileImage;
+  TileJSON.prototype = Object.create(TileImage && TileImage.prototype);
+  TileJSON.prototype.constructor = TileJSON;
+  /**
+   * @private
+   * @param {Event} event The load event.
+   */
+
+  TileJSON.prototype.onXHRLoad_ = function onXHRLoad_(event) {
+    var client =
+    /** @type {XMLHttpRequest} */
+    event.target; // status will be 0 for file:// urls
+
+    if (!client.status || client.status >= 200 && client.status < 300) {
+      var response;
+
+      try {
+        response =
+        /** @type {TileJSON} */
+        JSON.parse(client.responseText);
+      } catch (err) {
+        this.handleTileJSONError();
+        return;
+      }
+
+      this.handleTileJSONResponse(response);
+    } else {
+      this.handleTileJSONError();
+    }
+  };
+  /**
+   * @private
+   * @param {Event} event The error event.
+   */
+
+
+  TileJSON.prototype.onXHRError_ = function onXHRError_(event) {
+    this.handleTileJSONError();
+  };
+  /**
+   * @return {TileJSON} The tilejson object.
+   * @api
+   */
+
+
+  TileJSON.prototype.getTileJSON = function getTileJSON() {
+    return this.tileJSON_;
+  };
+  /**
+   * @protected
+   * @param {TileJSON} tileJSON Tile JSON.
+   */
+
+
+  TileJSON.prototype.handleTileJSONResponse = function handleTileJSONResponse(tileJSON) {
+    var epsg4326Projection = (0, _proj.get)('EPSG:4326');
+    var sourceProjection = this.getProjection();
+    var extent;
+
+    if (tileJSON.bounds !== undefined) {
+      var transform = (0, _proj.getTransformFromProjections)(epsg4326Projection, sourceProjection);
+      extent = (0, _extent.applyTransform)(tileJSON.bounds, transform);
+    }
+
+    var minZoom = tileJSON.minzoom || 0;
+    var maxZoom = tileJSON.maxzoom || 22;
+    var tileGrid = (0, _tilegrid.createXYZ)({
+      extent: (0, _tilegrid.extentFromProjection)(sourceProjection),
+      maxZoom: maxZoom,
+      minZoom: minZoom
+    });
+    this.tileGrid = tileGrid;
+    this.tileUrlFunction = (0, _tileurlfunction.createFromTemplates)(tileJSON.tiles, tileGrid);
+
+    if (tileJSON.attribution !== undefined && !this.getAttributions()) {
+      var attributionExtent = extent !== undefined ? extent : epsg4326Projection.getExtent();
+      this.setAttributions(function (frameState) {
+        if ((0, _extent.intersects)(attributionExtent, frameState.extent)) {
+          return [tileJSON.attribution];
+        }
+
+        return null;
+      });
+    }
+
+    this.tileJSON_ = tileJSON;
+    this.setState(_State.default.READY);
+  };
+  /**
+   * @protected
+   */
+
+
+  TileJSON.prototype.handleTileJSONError = function handleTileJSONError() {
+    this.setState(_State.default.ERROR);
+  };
+
+  return TileJSON;
+}(_TileImage.default);
+
+var _default = TileJSON;
+exports.default = _default;
+},{"../tileurlfunction.js":"../node_modules/ol/tileurlfunction.js","../asserts.js":"../node_modules/ol/asserts.js","../extent.js":"../node_modules/ol/extent.js","../net.js":"../node_modules/ol/net.js","../proj.js":"../node_modules/ol/proj.js","../source/State.js":"../node_modules/ol/source/State.js","../source/TileImage.js":"../node_modules/ol/source/TileImage.js","../tilegrid.js":"../node_modules/ol/tilegrid.js"}],"script/index.js":[function(require,module,exports) {
 "use strict";
 
 require("ol/ol.css");
@@ -73512,8 +74446,6 @@ var _ol2 = require("ol");
 
 var _util = require("ol/util.js");
 
-var _Tile = _interopRequireDefault(require("ol/layer/Tile"));
-
 var _OSM = _interopRequireDefault(require("ol/source/OSM"));
 
 var _XYZ = _interopRequireDefault(require("ol/source/XYZ"));
@@ -73522,9 +74454,7 @@ var _proj = require("ol/proj");
 
 var _GeoJSON = _interopRequireDefault(require("ol/format/GeoJSON"));
 
-var _Vector = _interopRequireDefault(require("ol/layer/Vector"));
-
-var _Vector2 = _interopRequireDefault(require("ol/source/Vector"));
+var _Vector = _interopRequireDefault(require("ol/source/Vector"));
 
 var _DragAndDrop = _interopRequireDefault(require("ol/interaction/DragAndDrop"));
 
@@ -73542,7 +74472,17 @@ var _Feature = _interopRequireDefault(require("ol/Feature"));
 
 var _Polygon = _interopRequireDefault(require("ol/geom/Polygon"));
 
-var _Point = _interopRequireDefault(require("ol/geom/Point"));
+var _Overlay = _interopRequireDefault(require("ol/Overlay.js"));
+
+var _Vector2 = _interopRequireDefault(require("ol/source/Vector.js"));
+
+var _Icon = _interopRequireDefault(require("ol/style/Icon"));
+
+var _Point = _interopRequireDefault(require("ol/geom/Point.js"));
+
+var _layer = require("ol/layer.js");
+
+var _TileJSON = _interopRequireDefault(require("ol/source/TileJSON.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -73739,10 +74679,10 @@ app.SaveControl = function (opt_options) {
 
 (0, _util.inherits)(app.SaveControl, _control.Control); //Add layer for draw
 
-var source = new _Vector2.default({
+var source = new _Vector.default({
   wrapX: false
 });
-var vector = new _Vector.default({
+var vector = new _layer.Vector({
   source: source
 }); //Add the map
 
@@ -73754,7 +74694,7 @@ var map = new _ol2.Map({
   }).extend([new app.DrawPolygonControl(), new app.SaveControl()]),
   target: 'map',
   //which div to put
-  layers: [new _Tile.default({
+  layers: [new _layer.Tile({
     source: new _OSM.default()
   }), //This is the map layer
   vector],
@@ -73837,7 +74777,7 @@ function expandFirstForm() {
 }, function () {
   (0, _jquery.default)(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
 });
-},{"ol/ol.css":"../node_modules/ol/ol.css","jquery":"../node_modules/jquery/dist/jquery.js","ol":"../node_modules/ol/index.js","ol/util.js":"../node_modules/ol/util.js","ol/layer/Tile":"../node_modules/ol/layer/Tile.js","ol/source/OSM":"../node_modules/ol/source/OSM.js","ol/source/XYZ":"../node_modules/ol/source/XYZ.js","ol/proj":"../node_modules/ol/proj.js","ol/format/GeoJSON":"../node_modules/ol/format/GeoJSON.js","ol/layer/Vector":"../node_modules/ol/layer/Vector.js","ol/source/Vector":"../node_modules/ol/source/Vector.js","ol/interaction/DragAndDrop":"../node_modules/ol/interaction/DragAndDrop.js","ol/control.js":"../node_modules/ol/control.js","ol/interaction.js":"../node_modules/ol/interaction.js","ol/style.js":"../node_modules/ol/style.js","ol/events/condition.js":"../node_modules/ol/events/condition.js","ol/interaction/Select.js":"../node_modules/ol/interaction/Select.js","ol/Feature":"../node_modules/ol/Feature.js","ol/geom/Polygon":"../node_modules/ol/geom/Polygon.js","ol/geom/Point":"../node_modules/ol/geom/Point.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"ol/ol.css":"../node_modules/ol/ol.css","jquery":"../node_modules/jquery/dist/jquery.js","ol":"../node_modules/ol/index.js","ol/util.js":"../node_modules/ol/util.js","ol/source/OSM":"../node_modules/ol/source/OSM.js","ol/source/XYZ":"../node_modules/ol/source/XYZ.js","ol/proj":"../node_modules/ol/proj.js","ol/format/GeoJSON":"../node_modules/ol/format/GeoJSON.js","ol/source/Vector":"../node_modules/ol/source/Vector.js","ol/interaction/DragAndDrop":"../node_modules/ol/interaction/DragAndDrop.js","ol/control.js":"../node_modules/ol/control.js","ol/interaction.js":"../node_modules/ol/interaction.js","ol/style.js":"../node_modules/ol/style.js","ol/events/condition.js":"../node_modules/ol/events/condition.js","ol/interaction/Select.js":"../node_modules/ol/interaction/Select.js","ol/Feature":"../node_modules/ol/Feature.js","ol/geom/Polygon":"../node_modules/ol/geom/Polygon.js","ol/Overlay.js":"../node_modules/ol/Overlay.js","ol/source/Vector.js":"../node_modules/ol/source/Vector.js","ol/style/Icon":"../node_modules/ol/style/Icon.js","ol/geom/Point.js":"../node_modules/ol/geom/Point.js","ol/layer.js":"../node_modules/ol/layer.js","ol/source/TileJSON.js":"../node_modules/ol/source/TileJSON.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -73864,7 +74804,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60667" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51922" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

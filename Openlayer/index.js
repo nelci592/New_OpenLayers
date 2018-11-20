@@ -24,6 +24,6 @@ function openmenu(menunummer) {
   if (menunummer == '2020') {
     var url = "auth.php"
   } else
-   var url = "kaart/index.html?jaarplan=" + menunummer;
+   var url = "map/index.html?jaarplan=" + menunummer;
    window.location.replace(url);
 }

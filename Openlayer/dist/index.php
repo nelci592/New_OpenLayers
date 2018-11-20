@@ -1,4 +1,6 @@
+<?session_start();?>
 
+<?php include('../dbh.php'); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -31,9 +33,10 @@
     <link rel="stylesheet" href="css/horizontal.css">
     < -->
     <script src="./script/kv_menu.js"></script>
+
     <link rel="stylesheet" href="sidebar/sidebar.css" />
       <script src="data/navigatie.json"></script>
-      <script src="script/plugins.js"></script>
+      <!-- <script src="script/plugins.js"></script> -->
 
      <!-- link and script for the confirm button -->
      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -61,26 +64,32 @@
   <body>
 
 
-    <nav class="navbar navbar-inverse">
+
+
+
+   <nav class="navbar navbar-inverse">
       <div class="container-fluid">
 
 
         <ul class="nav navbar-nav navbar-right">
 
           <!-- <li><a href=" <a href="http://localhost:1234/test.php"><span class="glyphicon glyphicon-user"></span> Login</a></li> -->
-          <li><a onclick="myFunction()"><span class="glyphicon glyphicon-user"></span> Log in</a></li>
+          <!-- <li><a onclick="myFunction()"><span class="glyphicon glyphicon-user"></span> Log in</a></li> -->
           <!-- <li><a class="<?php echo $activeHome; ?>" href="auth.php">HOME</a></li> -->
+<!--
+         -->
 
-          <script>
-          function myFunction(){
-          window.location = '../auth.php';}
-          </script>
-          <li><a class="<?php echo $activeVisit; ?>" href="../auth.php">VISIT US</a></li>
+          <li><a href="../auth.php"><span class="glyphicon glyphicon-user"></span> Log in</a></li>
 
-          <li><a href="../logout.php"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+
+          <li><a href="../admin/home.php"><span class="glyphicon glyphicon-log-in"></span>Profile</a></li>
+          <!-- <li><a href="../admin/home.php"><span class="glyphicon glyphicon-log-in"></span> Profile</a></li> -->
+
         </ul>
       </div>
     </nav>
+
+
 <!-- <ul>
 
 
@@ -125,12 +134,14 @@
   </div>
 
 
+
       <div id="sidenav" class="sidenav">
           <a class="sidebutton" href="#" onclick="Expend(this.text)">Home</a>
           <a class="sidebutton" href="#" onclick="Expend(this.text)">Style</a></br>
           <a class="sidebutton" href="#" onclich="expandFirstForm()">First form</a>
           <a class="sidebutton" href="#" onclick="Expend(this.text)">Second form</a>
           <a class="sidebutton" href="#" onclick="Expend(this.text)">Personal</a>
+
       </div>
 
 
@@ -150,6 +161,19 @@
               <div class="buttonHolder">
                 <button onclick="expandFirstForm()" id="formButton" class="button"><span>Confirm </span></button>
 
+                <button onclick="myFunction()">Try it</button>
+
+                <script>
+                var role = "<?php echo $_SESSION['user']['rolename'] ?>";
+                function myFunction() {
+                   alert(role);
+               }
+
+
+
+                //$_SESSION['user']['rolename'];
+                </script>
+
                 <form id="form1">
                   <h2>Informatie over dit object</h2>
                   <b>Geef omschrijving:</b> <input type="text" name="firstName">
@@ -161,11 +185,12 @@
 
                   <b>Middelinzet:</b>
                   <select name="--Selecteer--">
-                    <option value="blue">Blue</option>
-                    <option value="green">Green</option>
-                    <option value="yellow">Yellow</option>
-                    <option value="red">Red</option>
-                    <option value="pink">Pink</option>
+                    <option value="krol">Krol met windhoff</option>
+                    <option value="minima">Minima</option>
+                    <option value="plassermatic">Plassermatic</option>
+                    <option value="shimlifts">Shimlifts</option>
+                    <option value="stopmachine">Stop machine 204/205</option
+                      >
                   </select>
                     <br><br>
 
@@ -173,15 +198,58 @@
                     <br><br>
 
                   <button type="button" id="submit">Submit</button>
-
-
               </form>
+
+
+
+              <form id="form2">
+                <p>Informatie over dit object</p>
+                <br>Inzet-nummer:<br>
+                <input type="text" class="form-control" name="inzetnummer" placeholder="Inzet-nummer">
+
+                <br>HWO-nummer:<br>
+                <input type="text" class="form-control" name="hwonummer" placeholder="HWO-nummer">
+
+                <br>Startdatum:<br>
+                <input type="date" class="form-control" name="startdatum" placeholder="Startdatum">
+
+                <br>Starttijd:<br>
+                <input type="text" class="form-control" name="starttijd" placeholder="starttijd">
+
+                <br>Einddatum::<br>
+                <input type="text" class="form-control" name="einddatum" placeholder="Einddatum">
+
+                <br>Endtijd:<br>
+                <input type="text" class="form-control" name="endtijd" placeholder="Endtijd">
+
+                <br>Weeknummer:<br>
+                <input type="text" class="form-control" name="weeknummer" placeholder="Weeknummer">
+
+
+                <div class="buttonHolder">
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+              </div>
+
+            </form>
+
 
               </div>
           </div>
 
       </div>
 
+      <script>
+          var categorie_naam = "";
+          var categorie = getUrlVars()['categorie'];
+          var subcategorie = getUrlVars()['subcategorie'];
+          var menukleur2 = "";
+          var menukleur3 = "";
+          var icoon1 = "";
+          var icoon2 = "";
+
+          var jsonData;
+
+      </script>
 
 
 
@@ -211,6 +279,33 @@ function Expend(ID){
 function UnExpend(){
     document.getElementById('sidetab').style.width = '0px';
 }
+
+
+var confirm = document.getElementById('confirm');
+
+
+function expandFirstForm() {
+  Expend("FirstFormContent");
+}
+
+$(document).ready(function(){
+    $("#formButton").click(function(){
+      var role = "<?php echo $_SESSION['user']['rolename'] ?>";
+      if (role == "Level 8") {
+          $("#form1").toggle();
+      }
+      else if (role == "Level 1"){
+        $("#form2").toggle();
+      }
+    });
+});
+
+$('ul.nav li.dropdown').hover(function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+}, function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+});
+
 
       </script>
   </body>

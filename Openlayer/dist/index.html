@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,24 +18,18 @@
     <meta name="HandheldFriendly" content="true">
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link href="/stylesheet.53fdfc1e.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+
+    <link href="/stylesheet.53fdfc1e.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/css/ol.css" type="text/css">
+    <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
 
-
-     <!-- <script src="data/navigatie.json"></script> -->
-
-    <link rel="stylesheet" href="/normalize.1114379f.css">
-    <link rel="stylesheet" href="/tabs.5b1c8a1a.css">
-    <!-- <link rel="stylesheet" href="css/font-awesome.css"> -->
-    <!-- <link rel="stylesheet" href="css/ospb.css">
-    <link rel="stylesheet" href="css/horizontal.css">
-    < -->
-    <script src="/kv_menu.3669d34e.js"></script>
     <link rel="stylesheet" href="/sidebar.db1f75a7.css">
-      <script src="/navigatie.68ce3b40.js"></script>
-      <!-- <script src="script/plugins.js"></script> -->
+
+    <script src="/kv_menu.3669d34e.js"></script>
+    <script src="/navigatie.68ce3b40.js"></script>
 
      <!-- link and script for the confirm button -->
      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -51,66 +47,25 @@
      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-      <!-- <script src="jquery-3.3.1.min.js"></script> -->
 
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="/stylesheet.53fdfc1e.js"></script><script src="/normalize.1114379f.js"></script><script src="/tabs.5b1c8a1a.js"></script><script src="/sidebar.db1f75a7.js"></script><link rel="stylesheet" href="/script.7c337ef3.css"></head>
+  <script src="/stylesheet.53fdfc1e.js"></script><script src="/sidebar.db1f75a7.js"></script><link rel="stylesheet" href="/script.7c337ef3.css"></head>
 
   <body>
-
-
    <nav class="navbar navbar-inverse">
       <div class="container-fluid">
-
-
         <ul class="nav navbar-nav navbar-right">
-
-          <!-- <li><a href=" <a href="http://localhost:1234/test.php"><span class="glyphicon glyphicon-user"></span> Login</a></li> -->
-          <!-- <li><a onclick="myFunction()"><span class="glyphicon glyphicon-user"></span> Log in</a></li> -->
-          <!-- <li><a class="<?php echo $activeHome; ?>" href="auth.php">HOME</a></li> -->
-<!--
-          <script>
-          function myFunction(){
-          window.location = '../auth.php';}
-          </script> -->
-
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Log in</a></li>
-
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+          <!-- this works only if i convert the page to php and run it with the command
+          php -S localhost:8080 but then the map does not appear
+          otherwise if i run with npm start in the terminal i see the map but php does not work -->
+          <li><a href="/__/auth.php"><span class="glyphicon glyphicon-user"></span> Log in</a></li>
+          <li><a href="/__/redirect.php"><span class="glyphicon glyphicon-log-in"></span>Profile</a></li>
         </ul>
       </div>
     </nav>
-
-
 <!-- <ul>
 
-
-  <li><a href="../auth.php">Contact us</a></li>
-  <li><a href="#home">Information</a></li>
-
-  <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Profile</a>
-    <div class="dropdown-content">
-      <a href="#">Profile page</a>
-      <a href="#">Log out</a>
-    </div>
-  </li>
-
-<li class="dropdown">
-  <a href="javascript:void(0)" class="dropbtn">Polygon Settings</a>
-  <div class="dropdown-content">
-    <a href='../auth.php'>Draw</a>
-    <a href="#">Edit</a>
-    <a href="#">Something</a>
-  </div>
-</li>
-
-</ul> -->
-
-
-<!-- The Modal -->
 
 
 
@@ -120,6 +75,8 @@
       </div>
   </div> -->
 
+
+
   <div class="frame" id="basic">
       <ul id="iconenmenu" class="clearfix">
           <li class="ulmenu" title="Home"></li>
@@ -128,12 +85,14 @@
   </div>
 
 
+
       <div id="sidenav" class="sidenav">
           <a class="sidebutton" href="#" onclick="Expend(this.text)">Home</a>
           <a class="sidebutton" href="#" onclick="Expend(this.text)">Style</a><br>
           <a class="sidebutton" href="#" onclich="expandFirstForm()">First form</a>
           <a class="sidebutton" href="#" onclick="Expend(this.text)">Second form</a>
           <a class="sidebutton" href="#" onclick="Expend(this.text)">Personal</a>
+
       </div>
 
 
@@ -153,38 +112,75 @@
               <div class="buttonHolder">
                 <button onclick="expandFirstForm()" id="formButton" class="button"><span>Confirm </span></button>
 
+                <!-- $_SESSION['user']['rolename']; -->
+                
+
                 <form id="form1">
                   <h2>Informatie over dit object</h2>
-                  <b>Geef omschrijving:</b> <input type="text" name="firstName">
+                  <b>Geef omschrijving:</b>
+                  <input type="text" name="geefomschrijving" placeholder="Geef omschrijving">
                     <br><br>
-                  <b>Uiterste herstel datum:</b><input type="text" name="lastName">
+                  <b>Uiterste herstel datum:</b><input type="text" name="uiterstedatum" placeholder="Uiterste herstel datum">
                     <br><br>
-                    <b>  VSM-nummer:</b><input type="text" name="lastName">
+                    <b>  VSM-nummer:</b><input type="text" name="vsmnummer" placeholder="VSM-nummer">
                       <br><br>
 
                   <b>Middelinzet:</b>
                   <select name="--Selecteer--">
-                    <option value="blue">Blue</option>
-                    <option value="green">Green</option>
-                    <option value="yellow">Yellow</option>
-                    <option value="red">Red</option>
-                    <option value="pink">Pink</option>
+                    <option value="krol">Krol met windhoff</option>
+                    <option value="minima">Minima</option>
+                    <option value="plassermatic">Plassermatic</option>
+                    <option value="shimlifts">Shimlifts</option>
+                    <option value="stopmachine">Stop machine 204/205</option>
                   </select>
                     <br><br>
 
-                  <b>WO-nummer:</b> <input type="text" name="firstName">
+                  <b>WO-nummer:</b> <input type="text" name="wonumme" placeholder="WO-numme">
                     <br><br>
 
                   <button type="button" id="submit">Submit</button>
-
-
               </form>
+
+
+
+              <form id="form2">
+                <p>Informatie over dit object</p>
+                <br>Inzet-nummer:<br>
+                <input type="text" class="form-control" name="inzetnummer" placeholder="Inzet-nummer">
+
+                <br>HWO-nummer:<br>
+                <input type="text" class="form-control" name="hwonummer" placeholder="HWO-nummer">
+
+                <br>Startdatum:<br>
+                <input type="date" class="form-control" name="startdatum" placeholder="Startdatum">
+
+                <br>Starttijd:<br>
+                <input type="text" class="form-control" name="starttijd" placeholder="Starttijd">
+
+                <br>Einddatum::<br>
+                <input type="text" class="form-control" name="einddatum" placeholder="Einddatum">
+
+                <br>Endtijd:<br>
+                <input type="text" class="form-control" name="endtijd" placeholder="Endtijd">
+
+                <br>Weeknummer:<br>
+                <input type="text" class="form-control" name="weeknummer" placeholder="Weeknummer">
+
+
+                <div class="buttonHolder">
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+              </div>
+
+            </form>
+
 
               </div>
           </div>
 
       </div>
 
+
+<!-- this is for the original navigation bar -->
       <script>var categorie_naam = "";
 var categorie = getUrlVars()['categorie'];
 var subcategorie = getUrlVars()['subcategorie'];
@@ -196,25 +192,45 @@ var jsonData;</script>
 
 
 
-      <div id="map"></div>
+   <div id="map" class="map"><div id="popup"></div></div>
+
       <script src="/script.7c337ef3.js"></script>
       <script src="/draw.d635f158.js"></script>
       <script src="/sidebar.3396a2e3.js"></script>     <!-- import script for sidebar -->
+      <script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
+      	<!-- Openlayesr JS fIle -->
 
-      <!-- <script src="script/jquery.colorbox.js"></script>
-      <link rel="stylesheet" href="stylesheet/colorbox.css" /> -->
 
-<!-- over ride zoom button location -->
-      <style>.ol-zoom{
-              top:unset;
-              bottom: 15%;
-          }</style>
       <script>function Expend(ID) {
   document.getElementById('sidetab').style.width = '35%'; //document.getElementById(ID+'Content').style.display = 'block';
 }
 
 function UnExpend() {
   document.getElementById('sidetab').style.width = '0px';
-}</script>
+}
+
+var confirm = document.getElementById('confirm');
+
+function expandFirstForm() {
+  Expend("FirstFormContent");
+}
+
+$(document).ready(function () {
+  $("#formButton").click(function () {
+    var role = "<?php echo $_SESSION['user']['rolename'] ?>";
+
+    if (role == "Level 1") {
+      $("#form1").toggle();
+    } else if (role == "Level 8") {
+      $("#form2").toggle();
+    }
+  });
+});
+$('ul.nav li.dropdown').hover(function () {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+}, function () {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+});</script>
+
   </body>
 </html>

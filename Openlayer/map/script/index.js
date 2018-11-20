@@ -2,12 +2,10 @@ import 'ol/ol.css';
 import $ from 'jquery';
 import {Map, View} from 'ol';
 import {inherits} from 'ol/util.js';
-import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import XYZSource from 'ol/source/XYZ';
 import {fromLonLat} from 'ol/proj';
 import GeoJSON from 'ol/format/GeoJSON';
-import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import DragAndDrop from 'ol/interaction/DragAndDrop';
 import {defaults as defaultControls,Control} from 'ol/control.js';
@@ -17,7 +15,15 @@ import {click, pointerMove, altKeyOnly} from 'ol/events/condition.js';
 import Select from 'ol/interaction/Select.js';
 import Feature from 'ol/Feature';
 import Polygon from 'ol/geom/Polygon';
-import Point from 'ol/geom/Point';
+import Overlay from 'ol/Overlay.js';
+import Vector from 'ol/source/Vector.js';
+import Icon from 'ol/style/Icon';
+import Point from 'ol/geom/Point.js';
+import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
+import TileJSON from 'ol/source/TileJSON.js';
+
+
+
 
  var styleGreen = [
         new Style({

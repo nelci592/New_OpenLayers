@@ -19,7 +19,7 @@ if (mysqli_num_rows($result) == 1) { // user found
     $_SESSION['username'] = $username;
     $_SESSION['user'] = $logged_in_user;
     $_SESSION['success']  = "You are now logged in";
-    header('location: map/index.html');
+    header('location: map/index.php');
   }
 
   else {
@@ -53,6 +53,16 @@ function isLevel8()
     return false;
   }
 }
+
+function isLevel1()
+{
+  if (isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'Level 1' ) {
+    header('location: levels/one/home.php');
+  }else{
+    return false;
+  }
+}
+
 
 
 // escape string

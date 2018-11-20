@@ -35,11 +35,11 @@
       </style> -->
 
       <div class="header">
-          <div id="header">&nbsp;<img src="../kaart/Iconen/SeeITall_logo_2018_kort.png"
-             style="width:46.82px; height:46.64px;">&nbsp;&nbsp;&nbsp;
-             <img src="../kaart/Iconen/Home.svg" style="width:40px; height:45px;
-              background-color:#ccc;">&nbsp;&nbsp;&nbsp;
-              <img src="../kaart/Iconen/logo.png" style="width:242.85px; height:40px;"></div>
+          <div id="header">
+              <img src="../img/SeeITall_logo_2018_kort.png" style="width:46.82px; height:46.64px;">
+              <img src="../img/Home.svg" style="width:40px; height:45px; background-color:#ccc;">
+              <img src="../img/logo.png" style="width:242.85px; height:40px;">
+          </div>
       </div>
 
 </body>
